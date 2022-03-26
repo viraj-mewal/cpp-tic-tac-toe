@@ -310,7 +310,7 @@ void board(char arr[3][3])
                     if (i == 0 and j == 0)
                     {
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[5]);
-                        cout << " 1 ";
+                        cout << "\t 1 ";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
                         cout << "|";
                         continue;
@@ -332,7 +332,7 @@ void board(char arr[3][3])
                     else if (i == 1 and j == 0)
                     {
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[5]);
-                        cout << " 4 ";
+                        cout << "\t 4 ";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
                         cout << "|";
                         continue;
@@ -354,7 +354,7 @@ void board(char arr[3][3])
                     else if (i == 2 and j == 0)
                     {
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[5]);
-                        cout << " 7 ";
+                        cout << "\t 7 ";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
                         cout << "|";
                         continue;
@@ -387,18 +387,38 @@ void board(char arr[3][3])
                     break;
 
                 case 'X':
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[0]);
-                    cout << " X ";
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
-                    cout << "|";
-                    break;
+                    if (j==0){
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[0]);
+                        cout << "\t X ";
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
+                        cout << "|";
+                        break;
+                    }
+                    else
+                    {
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[0]);
+                        cout << " X ";
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
+                        cout << "|";
+                        break;
+                    }
 
                 case 'O':
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[1]);
-                    cout << " O ";
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
-                    cout << "|";
-                    break;
+                    if (j==0){
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[1]);
+                        cout << "\t O ";
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
+                        cout << "|";
+                        break;
+                    }
+                    else
+                    {
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[1]);
+                        cout << " O ";
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
+                        cout << "|";
+                        break;
+                    }
                 }
             }
 
@@ -427,7 +447,7 @@ void board(char arr[3][3])
         {
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
             cout << "\n";
-            cout << "___ ___ ___";
+            cout << "\t___ ___ ___";
             cout << "\n\n";
         }
         else
