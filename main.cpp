@@ -9,6 +9,7 @@ borders - 2
 won - 3
 input - 4
 num - 5
+draw - 6
 
 */
 
@@ -27,7 +28,7 @@ char switch_turn(char);
 void greet(char, char arr[3][3]);
 void exit();
 
-int colors[6] = {6, 3, 4, 2, 15, 5};
+int colors[7] = {6, 3, 4, 2, 15, 5, 14};
 
 int main()
 {
@@ -173,7 +174,7 @@ int main()
         }
 
         winner = checkWin(arr);
-        if (winner == 'X' or winner == 'O')
+        if (winner == 'X' or winner == 'O' or winner == 'D')
         {
             break;
         }
@@ -188,20 +189,27 @@ int main()
 
 void exit()
 {
-    cout << "Exiting in 5 seconds !" << endl;
-    for (int i = 5; i > 0; i--)
-    {
-        sleep(1);
-    }
+    cout << "Bye :)" << endl;
+    sleep(2);
 }
 
 void greet(char winner, char arr[3][3])
 {
     system("cls");
     board(arr);
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[3]);
-    cout << "Player " << winner << " Won !" << endl
-         << endl;
+    
+    switch (winner)
+    {
+    case 'D':
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[6]);
+        cout << "The match was draw !" << endl << endl;
+        break;
+    
+    default:
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[3]);
+        cout << "Player " << winner << " Won !" << endl << endl;
+        break;
+    }
 
     // Re - Play
 
@@ -239,6 +247,7 @@ char switch_turn(char a)
     default:
         break;
     }
+    return 0;
 }
 
 char checkWin(char arr[3][3])
@@ -286,10 +295,45 @@ char checkWin(char arr[3][3])
     {
         return arr[2][0];
     }
+
     else
     {
-        return 'N';
+        if (1)
+        {
+            bool draw = false;
+            bool breakthis = false;
+            for (int col = 0; col < 3; col++)
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    if (arr[col][row] != ' ')
+                    {
+                        draw = true;
+                    }
+                    else
+                    {
+                        draw = false;
+                        breakthis = true;
+                        break;
+                    }
+                }
+                if (breakthis)
+                {
+                    break;
+                }
+            }
+            if (draw)
+            {
+                return 'D';
+            }
+        }
+        else
+        {
+            return 'N';
+        }
+
     }
+    return '_';
 }
 
 void board(char arr[3][3])
@@ -387,7 +431,8 @@ void board(char arr[3][3])
                     break;
 
                 case 'X':
-                    if (j==0){
+                    if (j == 0)
+                    {
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[0]);
                         cout << "\t X ";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
@@ -404,7 +449,8 @@ void board(char arr[3][3])
                     }
 
                 case 'O':
-                    if (j==0){
+                    if (j == 0)
+                    {
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[1]);
                         cout << "\t O ";
                         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), colors[2]);
